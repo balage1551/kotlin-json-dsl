@@ -1,0 +1,12 @@
+/test-output/
+build/
+/.classpath
+/.project
+.idea
+bin/
+.settings/
+.gradle/
+*.log
+gradle.properties
+/_old/
+/local-plugin-repository/
