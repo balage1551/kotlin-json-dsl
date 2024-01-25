@@ -4,8 +4,35 @@ package hu.vissy.jsondsl
 
 import com.google.gson.JsonElement
 
-fun JsonElement.strictPath(path: String): JsonElement = this.path(path, true)!!
+/**
+ * Finds a value in a [JsonElement] using a path expression.
+ *
+ * @receiver the element to search.
+ * @param path The path expression to use. See [path] for details.
+ * @return The element found.
+ * @throws IllegalArgumentException If the path doesn't correct or if there is no item at the
+ * position defined by the path.
+ */
+fun JsonElement.strictPath(path: String): JsonElement = this.path(path, true)
+    ?: error("Path '$path' doesn't exist.")
 
+/**
+ * Finds a value in a [JsonElement] using a path expression.
+ *
+ * The possible path expressions:
+ *
+ *
+ * `.<key>` - references the field
+ *
+ * `[<index>]` - reference in an array
+ *
+ * `[<index>,<index>...]` - references in nested arrays
+ *
+ * @receiver the element to search.
+ * @param path The path expression to use.
+ * @return The element found.
+ * @throws IllegalArgumentException If the path syntax doesn't correct.
+ */
 fun JsonElement.path(path: String, strict: Boolean = false): JsonElement? {
 
     var p = path
@@ -73,8 +100,6 @@ fun JsonElement.path(path: String, strict: Boolean = false): JsonElement? {
                 if (!strict) return null else throw IllegalArgumentException("Element is not an object at ${path.length - p.length} : $path")
             }
         }
-
-//        println("$inArray -> $v  ($p)  -> $j")
     }
     return j
 }
