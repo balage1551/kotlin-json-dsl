@@ -14,8 +14,10 @@ version="1.0.0"
 
 
 dependencies {
+    kotlin("jvm")
+//    runtimeOnly("org.jetbrains.kotlin:kotlin-reflect:1.9.22")
     api("com.google.code.gson:gson:2.10.1")
-    testImplementation("junit:junit:4.13.1")
+    testImplementation("junit:junit:4.13.2")
 }
 
 java {
