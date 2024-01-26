@@ -37,6 +37,7 @@ java {
 semanticVersion {
     releaseTagPrefix = "v"
     allowDirtyLocal = true
+    forced = true
 }
 
 
