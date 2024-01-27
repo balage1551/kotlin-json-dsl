@@ -48,8 +48,10 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      */
     infix operator fun String.plusAssign(value: Int) = obj.addProperty(this, value)
     /**
-     * Sets the value of a property as integer on the target object, but only if the value
+     * Sets the value of a property as string on the target object, but only if the [value]
      * is not null.
+     * If the  [value] is null, this function doesn't set the value and removes the key if it
+     * has already existed.
      *
      * @receiver The name of the field.
      * @param value A nullable integer value to set.
@@ -57,6 +59,7 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      */
     infix operator fun String.remAssign(value: Int?) {
         if (value != null) obj.addProperty(this, value)
+        else remove(this)
     }
 
     /**
@@ -68,8 +71,10 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      */
     infix operator fun String.plusAssign(value: Long) = obj.addProperty(this, value)
     /**
-     * Sets the value of a property as long on the target object, but only if the value
+     * Sets the value of a property as string on the target object, but only if the [value]
      * is not null.
+     * If the  [value] is null, this function doesn't set the value and removes the key if it
+     * has already existed.
      *
      * @receiver The name of the field.
      * @param value A nullable long value to set.
@@ -77,6 +82,7 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      */
     infix operator fun String.remAssign(value: Long?) {
         if (value != null) obj.addProperty(this, value)
+        else remove(this)
     }
 
     /**
@@ -88,8 +94,10 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      */
     infix operator fun String.plusAssign(value: Double) = obj.addProperty(this, value)
     /**
-     * Sets the value of a property as a floating-point value on the target object,
-     * but only if the value is not null.
+     * Sets the value of a property as string on the target object, but only if the [value]
+     * is not null.
+     * If the  [value] is null, this function doesn't set the value and removes the key if it
+     * has already existed.
      *
      * @receiver The name of the field.
      * @param value A nullable double value to set.
@@ -108,8 +116,10 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      */
     infix operator fun String.plusAssign(value: Boolean) = obj.addProperty(this, value)
     /**
-     * Sets the value of a property as boolean on the target object, but only if the value
+     * Sets the value of a property as string on the target object, but only if the [value]
      * is not null.
+     * If the  [value] is null, this function doesn't set the value and removes the key if it
+     * has already existed.
      *
      * @receiver The name of the field.
      * @param value A nullable boolean value to set.
@@ -117,6 +127,7 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      */
     infix operator fun String.remAssign(value: Boolean?) {
         if (value != null) obj.addProperty(this, value)
+        else remove(this)
     }
 
     /**
@@ -128,8 +139,10 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      */
     infix operator fun String.plusAssign(value: String) = obj.addProperty(this, value)
     /**
-     * Sets the value of a property as string on the target object, but only if the value
+     * Sets the value of a property as string on the target object, but only if the [value]
      * is not null.
+     * If the  [value] is null, this function doesn't set the value and removes the key if it
+     * has already existed.
      *
      * @receiver The name of the field.
      * @param value A nullable string value to set.
@@ -137,6 +150,7 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      */
     infix operator fun String.remAssign(value: String?) {
         if (value != null) obj.addProperty(this, value)
+        else remove(this)
     }
 
     /**
@@ -157,6 +171,7 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      */
     infix operator fun String.remAssign(value: JsonElement?) {
         if (value != null) obj.add(this, value)
+        else remove(this)
     }
 
     /**
@@ -174,7 +189,7 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
 
     /**
      * Sets the value of a field on the target object, using the `toString` of value.
-     * This function don't set the value if it is null.
+     * If the  [value] is null, this function doesn't set the value and removes the key if it has already existed.
      *
      * @receiver The name of the field.
      * @param value A nullable [JsonElement] value to set.
@@ -182,6 +197,7 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      */
     infix operator fun String.remAssign(value: Any?) {
         if (value != null) obj.addProperty(this, value.toString())
+        else remove(this)
     }
 
     /**
@@ -196,6 +212,7 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      * @param value A nullable [JsonElement] value to set.
      */
     infix operator fun String.divAssign(value: JsonElement?) {
+        remove(this)
         if (value == null) return
         if (value.isJsonObject && value.asJsonObject.keySet().isEmpty()) return
         if (value.isJsonArray && value.asJsonArray.size() == 0) return

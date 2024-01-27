@@ -30,6 +30,7 @@ fun JsonElement.strictPath(path: String): JsonElement = this.path(path, true)
  *
  * @receiver the element to search.
  * @param path The path expression to use.
+ * @param strict Whether return null when field doesn't exist or null
  * @return The element found.
  * @throws IllegalArgumentException If the path syntax doesn't correct.
  */

@@ -28,6 +28,15 @@ import com.google.gson.*
 fun jsonArray(arr: JsonArray = JsonArray(), op: JsonArrayBuilder.() -> Unit) = JsonArrayBuilder(arr).apply(op).build()
 
 /**
+ * Adds all items in the [items] iterable to a new list.
+ *
+ * @param items The items to add.
+ * @return The array containing the items.
+ */
+fun jsonArray(items: Iterable<Any?>) = jsonArray( JsonArray(), items)
+
+
+/**
  * Adds all items in the [items] iterable to the list.
  *
  * @param arr Optional array to use as target. If omitted, a new [JsonArray] will be
@@ -40,6 +49,13 @@ fun jsonArray(arr: JsonArray = JsonArray(), items: Iterable<Any?>): JsonArray {
     return arr
 }
 
+/**
+ * Adds all arguments to a new the list.
+ *
+ * @param items The items to add.
+ * @return The array containing the items.
+ */
+fun jsonArray(vararg items: Any?) = jsonArray(JsonArray(), *items)
 
 /**
  * Adds all arguments to the list.
@@ -102,6 +118,7 @@ class JsonArrayBuilder(private val arr: JsonArray = JsonArray()) {
      * Adds a null value to the list.
      */
     @Suppress("MemberVisibilityCanBePrivate", "FunctionName")
+    @Deprecated("Use addNull or +null instead.", replaceWith = ReplaceWith("addNull"))
     fun NULL() = arr.add(JsonNull.INSTANCE)
 
     /**

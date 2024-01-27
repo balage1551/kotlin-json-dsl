@@ -68,9 +68,9 @@ fun <T : Any> JsonObject.internalGetOrDefault(clazz: KClass<T>, key: String, def
         Long::class -> v.asLong
         Double::class -> v.asDouble
         String::class -> v.asString
-        LocalDate::class -> DateTimeFormatter.ISO_DATE.parse(v.asString)
-        LocalTime::class -> DateTimeFormatter.ISO_DATE_TIME.parse(v.asString)
-        LocalDateTime::class -> DateTimeFormatter.ISO_TIME.parse(v.asString)
+        LocalDate::class -> LocalDate.from(DateTimeFormatter.ISO_DATE.parse(v.asString))
+        LocalTime::class -> LocalTime.from(DateTimeFormatter.ISO_TIME.parse(v.asString))
+        LocalDateTime::class -> LocalDateTime.from(DateTimeFormatter.ISO_DATE_TIME.parse(v.asString))
         JsonObject::class -> v.asJsonObject
         JsonArray::class -> v.asJsonArray
         else -> {
