@@ -40,51 +40,51 @@ semanticVersion {
     forced = true
 }
 
-
-
-publishing {
-    publications {
-        create<MavenPublication>("Maven") {
-            from(components["java"])
-            groupId = "hu.vissy"
-            artifactId = "kotlin-json-dsl"
-            description = "Kotlin DSL wrapper for GSON"
-        }
-        withType<MavenPublication> {
-            pom {
-                packaging = "jar"
-                name.set("kotlin-json-dsl")
-                description.set("Kotlin DSL wrapper for GSON")
-                url.set("https://github.com/balage1551/kotlin-json-dsl/")
-                inceptionYear.set("2024")
-                licenses {
-                    license {
-                        name.set("MIT license")
-                        url.set("https://opensource.org/licenses/MIT")
-                    }
-                }
-                developers {
-                    developer {
-                        id.set("Balage1551")
-                        name.set("Balázs Vissy")
-                        email.set("balage42-github@yahoo.com")
-                    }
-                }
-                scm {
-                    connection.set("scm:git:git@github.com:balage1551/kotlin-json-dsl.git")
-                    developerConnection.set("scm:git:ssh:git@github.com:balage1551/kotlin-json-dsl.git")
-                    url.set("https://github.com/balage1551/kotlin-json-dsl")
-                }
-            }
-        }
-    }
-
-    repositories {
-        maven {
-            url = layout.buildDirectory.dir("staging-deploy").get().asFile.toURI()
-        }
-    }
-}
+//
+//
+//publishing {
+//    publications {
+//        create<MavenPublication>("Maven") {
+//            from(components["java"])
+//            groupId = "hu.vissy"
+//            artifactId = "kotlin-json-dsl"
+//            description = "Kotlin DSL wrapper for GSON"
+//        }
+//        withType<MavenPublication> {
+//            pom {
+//                packaging = "jar"
+//                name.set("kotlin-json-dsl")
+//                description.set("Kotlin DSL wrapper for GSON")
+//                url.set("https://github.com/balage1551/kotlin-json-dsl/")
+//                inceptionYear.set("2024")
+//                licenses {
+//                    license {
+//                        name.set("MIT license")
+//                        url.set("https://opensource.org/licenses/MIT")
+//                    }
+//                }
+//                developers {
+//                    developer {
+//                        id.set("Balage1551")
+//                        name.set("Balázs Vissy")
+//                        email.set("balage42-github@yahoo.com")
+//                    }
+//                }
+//                scm {
+//                    connection.set("scm:git:git@github.com:balage1551/kotlin-json-dsl.git")
+//                    developerConnection.set("scm:git:ssh:git@github.com:balage1551/kotlin-json-dsl.git")
+//                    url.set("https://github.com/balage1551/kotlin-json-dsl")
+//                }
+//            }
+//        }
+//    }
+//
+//    repositories {
+//        maven {
+//            url = layout.buildDirectory.dir("staging-deploy").get().asFile.toURI()
+//        }
+//    }
+//}
 
 tasks.jar {
     dependsOn("setSemanticVersion")
@@ -104,7 +104,7 @@ kotlinPublications {
     defaultGroup.set("hu.vissy")
 
     // Prefix for artifacts for all publications
-    defaultArtifactIdPrefix.set("kotlin-json-dsl")
+    defaultArtifactIdPrefix.set("")
 
     // Set to false if you want to publish empty Javadoc JARs. Maven Central is OK with it
 //    fairDokkaJars.set(false)
@@ -152,7 +152,7 @@ kotlinPublications {
     publication {
         // By default, publication name is an artifact name. In this case, artifact name
         // will be kotlin-jupyter-kernel (prefix + name)
-        publicationName.set("core")
+        publicationName.set("kotlin-json-dsl")
 
         // Description that will appear in POM and on Maven Central search site
         description.set("Kotlin DSL wrapper of GSON.")
