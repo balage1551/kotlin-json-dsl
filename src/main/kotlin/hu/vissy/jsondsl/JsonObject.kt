@@ -46,7 +46,8 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      * @param value A non-null integer value to set.
      * @see [remAssign]
      */
-    infix operator fun String.plusAssign(value: Int) = obj.addProperty(this, value)
+    infix operator fun String.plusAssign(value: Int?) = if (value == null) obj.add(this, JsonNull.INSTANCE) else obj.addProperty(this, value)
+
     /**
      * Sets the value of a property as string on the target object, but only if the [value]
      * is not null.
@@ -69,7 +70,8 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      * @param value A non-null long value to set.
      * @see [remAssign]
      */
-    infix operator fun String.plusAssign(value: Long) = obj.addProperty(this, value)
+    infix operator fun String.plusAssign(value: Long?) = if (value == null) obj.add(this, JsonNull.INSTANCE) else obj.addProperty(this, value)
+
     /**
      * Sets the value of a property as string on the target object, but only if the [value]
      * is not null.
@@ -92,7 +94,8 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      * @param value A non-null double value to set.
      * @see [remAssign]
      */
-    infix operator fun String.plusAssign(value: Double) = obj.addProperty(this, value)
+    infix operator fun String.plusAssign(value: Double?) = if (value == null) obj.add(this, JsonNull.INSTANCE) else obj.addProperty(this, value)
+
     /**
      * Sets the value of a property as string on the target object, but only if the [value]
      * is not null.
@@ -114,7 +117,8 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      * @param value A non-null boolean value to set.
      * @see [remAssign]
      */
-    infix operator fun String.plusAssign(value: Boolean) = obj.addProperty(this, value)
+    infix operator fun String.plusAssign(value: Boolean?) = if (value == null) obj.add(this, JsonNull.INSTANCE) else obj.addProperty(this, value)
+
     /**
      * Sets the value of a property as string on the target object, but only if the [value]
      * is not null.
@@ -137,7 +141,8 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      * @param value A non null string value to set.
      * @see [remAssign]
      */
-    infix operator fun String.plusAssign(value: String) = obj.addProperty(this, value)
+    infix operator fun String.plusAssign(value: String?) = if (value == null) obj.add(this, JsonNull.INSTANCE) else obj.addProperty(this, value)
+
     /**
      * Sets the value of a property as string on the target object, but only if the [value]
      * is not null.
@@ -160,7 +165,8 @@ class JsonObjectBuilder(private val obj: JsonObject = JsonObject()) {
      * @param value A non null JsonElement value to set.
      * @see [remAssign]
      */
-    infix operator fun String.plusAssign(value: JsonElement) = obj.add(this, value)
+    infix operator fun String.plusAssign(value: JsonElement?) = if (value == null) obj.add(this, JsonNull.INSTANCE) else obj.add(this, value)
+
     /**
      * Sets the value of a property from an optionally pre-created [JsonElement] on the
      * target object, but only if the value is not null.

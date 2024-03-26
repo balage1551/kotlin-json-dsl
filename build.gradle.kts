@@ -4,7 +4,7 @@ import java.nio.file.Files
 
 plugins {
     kotlin("jvm") version "1.9.22"
-    id("hu.vissy.gradle.semanticVersioning") version "[1.0.0,2.0.0)"
+    id("hu.vissy.gradle.semanticVersioning") version "1.2.5"
     `maven-publish`
     signing
     id("org.jetbrains.dokka") version "1.9.10"
@@ -38,6 +38,9 @@ semanticVersion {
     releaseTagPrefix = "v"
     allowDirtyLocal = true
     forced = true
+    logEntryPrefixes.breaking.add("[BROKEN]")
+    logEntryPrefixes.newFeature.add("[NEW]")
+    logEntryPrefixes.bugfix.add("[FIX]")
 }
 
 //
